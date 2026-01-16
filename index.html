@@ -8,18 +8,25 @@
 
 <h2>My Live Stream</h2>
 
-<video id="video" controls autoplay muted width="800"></video>
+<video
+  id="video"
+  controls
+  muted
+  playsinline
+  webkit-playsinline
+  width="100%"
+  style="max-width:100%; background:black;">
+</video>
 
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 <script>
   var video = document.getElementById('video');
-
-  var videoSrc = "https://d2i0h25e7zdxxx.cloudfront.net/index_2.m3u8?start=1768549500&Signature=n72WBNfm14yqcSeAE8CX7vL1NgDOq6MaAzl9cXPFPorbCdF30A0nILGPukBotJCG9nDl8Uww%7Ey%7ELrPBXCBB1vvvXQ1HzOofY9weuGmVPxmL81fCBIK12q6RPgrxtmXCd7KjDmuMq9qGUOrOh18VilT7KciMrc4c3nTVEGZIvHLhVNxdypYys9BoDMDuche12Ilc4E%7E25E9XFMDTD19ZAIQ4Y6S%7EJPY%7ECC2s6H1WxcePrwL0fB4cc68uix7ktcvBmWdd0wdi6vO8Iy0eCz-q4ynQnG5ljgroBNJ8riGSfLpvsm5X-2gqDuFAxY05RSK2vm4lE2%7EfkrZnKAGNq3ppDdQ__&Key-Pair-Id=APKAXVKMENFCRKTG5XE2&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9kMmkwaDI1ZTd6ZHh4eC5jbG91ZGZyb250Lm5ldC8qIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNzY4NTY5NjcxfX19XX0_";
+  var videoSrc = "PASTE_YOUR_M3U8_URL";
 
   if (Hls.isSupported()) {
     var hls = new Hls({
       lowLatencyMode: true,
-      liveSyncDuration: 3
+      enableWorker: true
     });
 
     hls.loadSource(videoSrc);
@@ -28,8 +35,8 @@
     hls.on(Hls.Events.ERROR, function (event, data) {
       console.log("HLS error:", data);
     });
-
-  } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+  } 
+  else if (video.canPlayType('application/vnd.apple.mpegurl')) {
     video.src = videoSrc;
   }
 </script>
